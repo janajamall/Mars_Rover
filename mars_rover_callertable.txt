@@ -1,0 +1,27 @@
+main
+	__CC2DW
+		____DoICP
+	ATD_init
+	pwm_init_dc
+	set_dc_motor_speed
+	calculate_distance
+		word2double
+			NRM3232
+				RES032
+				SETFUN32
+				FIXSIGN32
+		Mul_32x32_FP
+			RES032
+			SETFOV32
+			SETFUN32
+		Div_32x32_FP
+			SETFDZ32
+			RES032
+			SETFOV32
+			SETFUN32
+		double2word
+			SETIOV3224
+interrupt
+	ATD_read
+		Mul_16X16_U
+		Div_16X16_U
