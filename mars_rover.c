@@ -177,18 +177,17 @@ void main(void) {
         Delay_ms(1000);
 
 
-           // === DISTANCE SENSOR ===
         if (calculate_distance() < 10) {
-            PORTC.F6 = 1;
+            PORTC |= 0b01000000;
 
         } else {
-            PORTC.F6 = 0;
+            PORTC &= ~0b01000000;;
 
         }
 
         DELAY_MS(1000);
 
-          PIE1 &= ~0x04;           // Disable CCP1 interrupt
+        PIE1 &= ~0x04;           // Disable CCP1 interrupt
         T1CON = 0x00;            // Disable Timer1
         Delay_ms(10);            // Small delay for safety
 
