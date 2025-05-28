@@ -177,7 +177,7 @@ void main(void) {
         Delay_ms(1000);
 
 
-        if (calculate_distance() < 10) {
+        if (calculate_distance() < 1) {
             PORTC |= 0b01000000;
 
         } else {
@@ -192,7 +192,7 @@ void main(void) {
         Delay_ms(10);            // Small delay for safety
 
         distance = calculate_distance();
-        if (distance < 10) {
+        if (distance < 1) {
             PORTC |= 0b01000000;  // Close object
         } else {
             PORTC &= ~0b01000000;
