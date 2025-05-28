@@ -187,25 +187,6 @@ void main(void) {
 
         DELAY_MS(1000);
 
-        PIE1 &= ~0x04;           // Disable CCP1 interrupt
-        T1CON = 0x00;            // Disable Timer1
-        Delay_ms(10);            // Small delay for safety
-
-        distance = calculate_distance();
-        if (distance < 1) {
-            PORTC |= 0b01000000;  // Close object
-        } else {
-            PORTC &= ~0b01000000;
-        }
-
-        Delay_ms(100);           // Let things settle
-
-        // Re-enable CCP1 PWM safely after distance measurement
-        TMR1H = 0;
-        TMR1L = 0;
-        PIE1 |= 0x04;            // Re-enable CCP1 interrupt
-        T1CON = 0x01;            // Restart Timer1
-
         // Change angle every cycle to open/close arm
         if (!x)
             angle = 3500;
