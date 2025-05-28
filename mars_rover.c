@@ -11,7 +11,6 @@ void Delay_us(unsigned int us) {
     while (us--) {
         asm("NOP");
         asm("NOP");
-        asm("NOP");
     }
 }
 
@@ -33,7 +32,7 @@ void ATD_read(void) {
     temp_raw = ((ADRESH << 8) | ADRESL); // ADC is 10 bits so result is split with two 8 bit register, this is where we combine them
     temp_celsius = (temp_raw * 488) / 1000;    // Convert to Celsius (10mV per degree)
     if (temp_celsius > 10) {
-        PORTB |= 0x04; // Turn on LEDs or fan if temp > 10C
+        PORTB |= 0x04; // Turn on LED if temp > 10C
     } else {
         PORTB &= ~0x04; // Turn off otherwise
     }
@@ -111,7 +110,7 @@ void read_light() {
 }
 
 void pwm_init_dc() {
-     TRISC.F1 = 0;            // Set RC2 as output
+     TRISC = TRISC & 0b11111101;            // Set RC2 as output
     CCP2CON = 0x0C;       // PWM mode for CCP2
 
    PR2 = 255;
@@ -134,17 +133,13 @@ if (speed_percent > 0) {
         PORTB &= ~((1 << 7) | (1 << 6) | (1 << 5) | (1 << 4));
     }
 
-
-    if (speed_percent < 0) speed_percent = -speed_percent;
-    if (speed_percent > 100) speed_percent = 100;
-
   CCPR2L=75;
 }
 void main(void) {
     ATD_init();
     pwm_init_dc();
 
-    OPTION_REG.INTEDG = 0;         // Interrupt on falling edge 
+    OPTION_REG = OPTION_REG & 0b10111111;    // Interrupt on falling edge 
     INTCON |= 0b11110000;          // Enable Global, Peripheral , and External interrupts
 
     TRISA = 0x01;                  // ra0 input - temp sensor
