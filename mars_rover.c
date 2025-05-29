@@ -140,7 +140,7 @@ void main(void) {
     pwm_init_dc();
 
     OPTION_REG = OPTION_REG & 0b10111111;    // Interrupt on falling edge 
-    INTCON |= 0b11110000;          // Enable Global, Peripheral , and External interrupts
+    INTCON |= 0b11110000;          // Enable Global, Peripheral , and External interrupts + Timer0
 
     TRISA = 0x01;                  // ra0 input - temp sensor
     TRISB = 0b00000001;            // rb0 input
