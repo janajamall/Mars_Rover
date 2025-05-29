@@ -114,7 +114,7 @@ void pwm_init_dc() {
     CCP2CON = 0x0C;       // PWM mode for CCP2
 
    PR2 = 255;
- T2CON = 0b00000111;      // Timer2 ON, prescaler 1:1
+ T2CON = 0b00000111;      // Timer2 ON, prescaler 1:16
 }
 
 
