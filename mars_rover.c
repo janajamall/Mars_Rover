@@ -95,7 +95,7 @@ unsigned int calculate_distance(){
     time = (TMR1H << 8) | TMR1L; // Read Timer Value
 
     // Convert Time to Distance assuming speed of sound = 343 m/s
-    distance = (time * 0.0343) /2; // this gives is the distance in cm
+    distance = (time * 0.0343 * 2) /2; // this gives is the distance in cm
 
     return distance; 
 }
