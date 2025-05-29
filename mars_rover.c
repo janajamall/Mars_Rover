@@ -22,8 +22,8 @@ void Delay_ms(unsigned int ms) {
 
 
 void ATD_init(void) {
-    ADCON0 = 0x41; // Enable ADC Module and select bit 0 -- ADC Control Register
-    ADCON1 = 0xCE; // only sets ra0 as digital the rest of ra pins are analog -- ADC Config register
+    ADCON0 = 0x41; // Enable ADC Module and select bit 0 -- ADC Control Register -- clock 1:16 
+    ADCON1 = 0xCE; // only sets ra0 as analog the rest of ra pins are digital -- ADC Config register -- right justified
 }
 
 void ATD_read(void) {
