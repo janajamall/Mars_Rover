@@ -159,8 +159,8 @@ void main(void) {
     HL = 1;                        // Start with High
     CCP1CON = 0x08;                // Compare mode, set output on match
     PIE1 |= 0x04;                  // Enable CCP1 interrupt
-    CCPR1H = 2000 >> 8;
-    CCPR1L = 2000;
+    CCPR1H = 1500 >> 8;
+    CCPR1L = 1500;
 
     x = 0;
     tmr0=0;
